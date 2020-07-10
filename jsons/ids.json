@@ -1,0 +1,27 @@
+{
+    "channels": {
+        "troubleshooting": "713363507785105419",
+        "logsAndSaves": "615545764663263278",
+        "faq": "587658747220983817",
+        "dev": "585494340684611584"
+    },
+    "roles": {
+        "verified": ""
+    },
+    "links": {
+        "pFAQ": "../pictures/logos/csFAQ.png",
+        "pLogo": "../pictures/logos/csLogo.png",
+        "pLady": "../pictures/logos/csLady.png",
+        "pDev": "../pictures/logos/csDev.png",
+        "pBug": "../pictures/logos/csBug.png",
+        "pLoading": "../pictures/logos/csLoadingScreen.png",
+        "pCYRI": "../pictures/logos/cyri.png",
+        "cyriCS": "https://www.systemrequirementslab.com/cyri/requirements/cooking-simulator/18846"
+    },
+    "kenobi": [
+        "./pictures/kenobi/chenobi.png",
+        "./pictures/kenobi/severalKenobi.png",
+        "./pictures/kenobi/ieKenobi.png",
+        "./pictures/kenobi/laBaguetteKenobi.png"
+    ]
+}
