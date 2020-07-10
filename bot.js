@@ -17,8 +17,12 @@ for (const file of commandFiles) {
 }
 
 // Global Variables
-const prefix = Config.prefix;
-let lastKenobi = new Date() - 180000;
+const prefix = Config.prefix
+let yikes
+let lastKenobi = [
+    new Date() - 180000,
+    yikes
+]
 
 // What should the bot do once its ready
 client.on('ready', () => {
@@ -97,14 +101,21 @@ function respond(message, word) {
                 .setTimestamp(new Date)
             return message.channel.send(mEmbed)
         case ReactMessages[3] :
-            if (((new Date()) - lastKenobi) < 180000) {
-                return message.author.send(`Hey, uhm, you know there is a cooldown, right? \nWell, now you know. ^^ \n\`Still ${Math.round((180000 - ((new Date()) - lastKenobi)) / 1000)} seconds to go.\``)
+            if (((new Date()) - lastKenobi[0]) < 180000) {
+                return message.author.send(`Hey, uhm, you know there is a cooldown, right? \nWell, now you know. ^^ \n\`Still ${Math.round((180000 - ((new Date()) - lastKenobi[0])) / 1000)} seconds to go.\``)
+            }
+            if (message.member === lastKenobi[1]) {
+                return message.author.send(`I know, Kenobi is awesome. But please don't overuse it.`)
             }
             message.channel.send({files: [ids.kenobi[randomInteger(0, ids.kenobi.length - 1)]]})
-            lastKenobi = Date.now()
+            lastKenobi = [
+                Date.now(),
+                message.member
+            ]
             return
         case ReactMessages[4] :
-            return message.reply("this is a secret :PepeYikes:")
+            let emoji = client.emojis.cache.find(emoji => emoji.name === "PepeYikes")
+            return message.reply(`this is a secret ${emoji}`)
     }
 }
 
