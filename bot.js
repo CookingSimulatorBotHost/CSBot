@@ -98,7 +98,7 @@ function respond(message, word) {
             return message.channel.send(mEmbed)
         case ReactMessages[3] :
             if (((new Date()) - lastKenobi) < 180000) {
-                return message.author.send(`Hey, uhm, you know there is a cooldown, right?\n Well, now you know. ^^ \n Still ${180000 - ((new Date()) - lastKenobi) / 1000} seconds to go.`)
+                return message.author.send(`Hey, uhm, you know there is a cooldown, right? \nWell, now you know. ^^ \n\`Still ${Math.round((180000 - ((new Date()) - lastKenobi)) / 1000)} seconds to go.\``)
             }
             message.channel.send({files: [ids.kenobi[randomInteger(0, ids.kenobi.length - 1)]]})
             lastKenobi = Date.now()
