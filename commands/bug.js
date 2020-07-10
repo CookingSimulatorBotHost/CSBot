@@ -4,7 +4,7 @@ const Discord = require('discord.js')                           // Imports disco
 module.exports = {
     name: 'bug',
     description: 'Bug!',
-    execute(rMessage, args) {
+    execute(message, args) {
         let mEmbed = new Discord.MessageEmbed()
             .setColor('#00ffff')
             .setTitle('How to report a bug')
@@ -12,6 +12,6 @@ module.exports = {
             .setDescription(`Please describe your bug as detailed as possible and attach your output_log.txt and your savefile. Check <#${ids.channels.logsAndSaves}> on how to attach these files.`)
             .setThumbnail(ids.links.pBug)
             .setTimestamp(new Date)
-        rMessage.channel.send(mEmbed)
+        message.channel.send(mEmbed)
     }
 }

@@ -4,7 +4,7 @@ const Discord = require('discord.js')                               // Imports d
 module.exports = {
     name: 'faq',
     description: 'FAQ reminder!',
-    execute(rMessage, args) {
+    execute(message, args) {
         let mEmbed = new Discord.MessageEmbed()
             .setColor('#00ffff')
             .setTitle('FAQ - Frequently Asked Questions')
@@ -12,6 +12,6 @@ module.exports = {
             .setDescription(`Before asking any questions or writing suggestions, please check <#${ids.channels.faq}> before doing so.`)
             .setThumbnail(ids.links.pFAQ)
             .setTimestamp(new Date)
-        rMessage.channel.send(mEmbed)
+        message.channel.send(mEmbed)
     }
 }
