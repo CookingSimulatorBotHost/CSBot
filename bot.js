@@ -31,103 +31,81 @@ client.on('ready', () => {
 })
 
 // What should the bot do once it recieves a message
-client.on('message', (rMessage) => {
+client.on('message', (message) => {
     // If the author of the recieved message is a bot, return
-    if (rMessage.author.bot) {
+    if (message.author.bot) {
         return
     }
     
     // Check for words in a message and respond to it, then return
-    if (rMessage.content.toLowerCase().includes(ReactMessages.kenobi)) {
-        kenobi(rMessage)
-        return
-    } else if (rMessage.content.toLowerCase().includes(ReactMessages.loadingScreen)) {
-        respondLS(rMessage)
-        return
-    } else if (rMessage.content.toLowerCase().includes(ReactMessages.botUsage) || rMessage.content.toLowerCase().includes(ReactMessages.botUsage2)) {
-        respondUsage(rMessage)
-        return
+    for (word of ReactMessages) {
+        if (message.content.toLowerCase().includes(word)) {
+            respond(message, word)
+            return
+        }
     }
 
     // If no message matches and the message doesent start with the prefix, return
-    if (!rMessage.content.startsWith(prefix)) {
+    if (!message.content.startsWith(prefix)) {
         return
     }
 
     // Get the command and arguments
-    const args = rMessage.content.slice(prefix.length).split(/ +/)
+    const args = message.content.slice(prefix.length).split(/ +/)
     const command = args.shift().toLowerCase()
 
     // If no command matches the recieved command, return
     if (!client.commands.has(command))  {
-        rMessage.channel.send("Sorry, I couldn't understand you. Try to use '!help'.\nIf you weren't talking to me, please don't start your message with '!'. :)")
+        message.channel.send("Sorry, I couldn't understand you. Try to use '!help'.\nIf you weren't talking to me, please don't start your message with '!'. :)")
         return
     }
     
     // Try to execute the command
     try {
-        client.commands.get(command).execute(rMessage, args)
+        client.commands.get(command).execute(message, args)
     } catch (e) {
         console.error(e)
-        rMessage.guild.users.cache.get(Config.bot_owner).send(`There was an error while handling the request "${rMessage.content}".`)
-        rMessage.reply(`Sadly, there was an error while executing your request. :(`)
+        message.guild.users.cache.get(Config.bot_owner).send(`There was an error while handling the request "${message.content}".`)
+        message.reply(`Sadly, there was an error while executing your request. :(`)
     }
 })
 
-/*client.on('messageReactionAdd', async (rReaction, user) => {
-    if (user.bot)
-        return 
-    try {
-        if (rReaction.message.partial)
-            await rReaction.message.fetch();
-    } catch (e) {
-        console.log("Error: " + e)
-    }
-    let guild = rReaction.message.guild
-    guild.members.fetch(user).then(member => {
-        if (!member.roles.cache.find(r => r.name === "Clone")) {
-            member.roles.add(guild.roles.cache.find(role => role.name === "Clone"))
-            rReaction.users.remove(member.user)
-        } else
-            rReaction.users.remove(member.user)
-    })
-})*/
-
-// Ah yes, our great master, General Kenobi 
-function kenobi(rMessage) {
-    if (((new Date()) - lastKenobi) < 180000) {
-        return
-    }
-    rMessage.channel.send({files: [ids.kenobi[randomInteger(0, ids.kenobi.length - 1)]]})
-    lastKenobi = Date.now()
-}
-
-// Respond with a message that links to the troubleshooting channel, if the message contains "loading screen"
-function respondLS(rMessage) {
+function respond(message, word) {
     let mEmbed = new Discord.MessageEmbed()
-        .setColor('#00ffff')
-        .setTitle('Loading Screen')
-        .setAuthor('Cooking Simulator', ids.links.pLogo)
-        .setDescription(`If you are stuck in the loading screen, check <#${ids.channels.troubleshooting}>!`)
-        .setThumbnail(ids.links.pLoading)
-        .setTimestamp(new Date)
-    rMessage.channel.send(mEmbed)
-}
-
-// Respond with a message that explains the usage of this bot
-function respondUsage(rMessage) {
-    let mEmbed = new Discord.MessageEmbed()
-        .setColor('#00ffff')
-        .setTitle('Bot Usage')
-        .setAuthor('Cooking Simulator', ids.links.pLogo)
-        .setThumbnail(ids.links.pLady)
-        .addFields(
-            { name: "Prefix", value: `The prefix of this bot is '**${Config.prefix}**'`},
-            { name: "Usage", value: `To use the bot, type '**${Config.prefix}<Command>**'`},
-            { name: "Example", value: `${Config.prefix}help`}
-        )
-        .setTimestamp(new Date)
-    rMessage.channel.send(mEmbed)
+    switch (word) {
+        case ReactMessages[0] :
+            mEmbed = new Discord.MessageEmbed()
+                .setColor('#00ffff')
+                .setTitle('Loading Screen')
+                .setAuthor('Cooking Simulator', ids.links.pLogo)
+                .setDescription(`If you are stuck in the loading screen, check <#${ids.channels.troubleshooting}>!`)
+                .setThumbnail(ids.links.pLoading)
+                .setTimestamp(new Date)
+            return message.channel.send(mEmbed)
+        case ReactMessages[1] :
+        case ReactMessages[2] :
+            mEmbed = new Discord.MessageEmbed()
+                .setColor('#00ffff')
+                .setTitle('Bot Usage')
+                .setAuthor('Cooking Simulator', ids.links.pLogo)
+                .setThumbnail(ids.links.pLady)
+                .addFields(
+                    { name: "Prefix", value: `The prefix of this bot is '**${Config.prefix}**'`},
+                    { name: "Usage", value: `To use the bot, type '**${Config.prefix}<Command>**'`},
+                    { name: "Example", value: `${Config.prefix}help`}
+                )
+                .setTimestamp(new Date)
+            return message.channel.send(mEmbed)
+        case ReactMessages[3] :
+            if (((new Date()) - lastKenobi) < 180000) {
+                return message.author.send(`Hey, uhm, you know there is a cooldown, right?\n Well, now you know. ^^ \n Still ${180000 - ((new Date()) - lastKenobi) / 60} seconds to go.`)
+            }
+            message.channel.send({files: [ids.kenobi[randomInteger(0, ids.kenobi.length - 1)]]})
+            lastKenobi = Date.now()
+            return
+        case ReactMessages[4] :
+            return message.reply("This is a secret :PepeYikes:")
+    }
 }
 
 // Gives back a random number

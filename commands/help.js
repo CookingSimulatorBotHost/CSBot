@@ -4,7 +4,7 @@ const Discord = require('discord.js')                           // Imports disco
 module.exports = {
     name: 'help',
     description: 'Help!',
-    execute(rMessage, args) {
+    execute(message, args) {
         let mEmbed = new Discord.MessageEmbed()
             .setColor('#00ffff')
             .setTitle('Public Commands')
@@ -18,8 +18,8 @@ module.exports = {
                 { name: '!faq', value: 'Provides a reminder to check the FAQ. ;)'}
             )
             .setTimestamp(new Date)
-        rMessage.channel.send(mEmbed)
-        if (rMessage.member.hasPermission('ADMINISTRATOR')) {
+        message.channel.send(mEmbed)
+        if (message.member.hasPermission('ADMINISTRATOR')) {
             let aEmbed = new Discord.MessageEmbed()
             .setColor('#00ffff')
             .setTitle('Admin Commands')
@@ -30,7 +30,7 @@ module.exports = {
                 { name: '!rule', value: 'Creates the rule embed message for the rule channel - should only be used one time.'}
             )
             .setTimestamp(new Date)
-            rMessage.author.send(aEmbed)
+            message.author.send(aEmbed)
         }
     }
 }

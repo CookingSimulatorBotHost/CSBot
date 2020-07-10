@@ -4,7 +4,7 @@ const Discord = require('discord.js')                                   // Impor
 module.exports = {
     name: 'cyri',
     description: 'Can YOU run it?',
-    execute(rMessage, args) {
+    execute(message, args) {
         let mEmbed = new Discord.MessageEmbed()
             .setColor('#00ffff')
             .setTitle('Can You run it? Let\'s see!')
@@ -12,6 +12,6 @@ module.exports = {
             .setDescription(`Check [this](${ids.links.cyriCS}) awesome site\nto see if you can run this game!`)
             .setThumbnail(ids.links.pCYRI)
             .setTimestamp(new Date)
-        rMessage.channel.send(mEmbed)
+        message.channel.send(mEmbed)
     }
 }

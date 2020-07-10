@@ -5,11 +5,11 @@ const Discord = require('discord.js')                               // Imports d
 module.exports = {
     name: 'rule',
     description: 'Set rule message!',
-    execute(rMessage, args) {
-        if (!rMessage.member.hasPermission('ADMINISTRATOR'))
+    execute(message, args) {
+        if (!message.member.hasPermission('ADMINISTRATOR'))
             return
         
-        rMessage.reply(`this command is currently not available, please reach out to the bot owner <@${Config.bot_owner}>.`)
+        message.reply(`this command is currently not available, please reach out to the bot owner <@${Config.bot_owner}>.`)
         /*let mEmbed = new Discord.MessageEmbed()
             .setColor('#ff0000')
             .setTitle('**Rules**')
@@ -25,7 +25,7 @@ module.exports = {
                 { name: '**The developers\' working hours are 9-17CET, Monday - Friday:stopwatch:**', value: 'Please keep that in mind and don\'t get upset, when we don\'t respond immediately to messages sent on Saturday night :pray:'}
             )
             .setTimestamp(new Date)
-        rMessage.channel.send(mEmbed).then(sendMessage => sendMessage.react('👌')).catch(console.error)
-        rMessage.delete().then(msg => console.log(`Deleted sRule call message from ${msg.author.username}`)).catch(console.error)*/
+        message.channel.send(mEmbed).then(sendMessage => sendMessage.react('👌')).catch(console.error)
+        message.delete().then(msg => console.log(`Deleted sRule call message from ${msg.author.username}`)).catch(console.error)*/
     }
 }

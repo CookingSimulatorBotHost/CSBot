@@ -4,7 +4,7 @@ const Discord = require('discord.js')                               // Imports d
 module.exports = {
     name: 'dev',
     description: 'Troubleshooting!',
-    execute(rMessage, args) {
+    execute(message, args) {
         let mEmbed = new Discord.MessageEmbed()
             .setColor('#00ffff')
             .setTitle('Troubleshooting')
@@ -12,6 +12,6 @@ module.exports = {
             .setDescription(`Please make sure you tried all solutions provided in <#${ids.channels.troubleshooting}>. If that doesn't work, try to verify the game file integrity on steam or reinstall the game.`)
             .setThumbnail(ids.links.pDev)
             .setTimestamp(new Date)
-        rMessage.channel.send(mEmbed)
+        message.channel.send(mEmbed)
     }
 }
