@@ -98,13 +98,13 @@ function respond(message, word) {
             return message.channel.send(mEmbed)
         case ReactMessages[3] :
             if (((new Date()) - lastKenobi) < 180000) {
-                return message.author.send(`Hey, uhm, you know there is a cooldown, right?\n Well, now you know. ^^ \n Still ${180000 - ((new Date()) - lastKenobi) / 60} seconds to go.`)
+                return message.author.send(`Hey, uhm, you know there is a cooldown, right?\n Well, now you know. ^^ \n Still ${180000 - ((new Date()) - lastKenobi) / 1000} seconds to go.`)
             }
             message.channel.send({files: [ids.kenobi[randomInteger(0, ids.kenobi.length - 1)]]})
             lastKenobi = Date.now()
             return
         case ReactMessages[4] :
-            return message.reply("This is a secret :PepeYikes:")
+            return message.reply("this is a secret :PepeYikes:")
     }
 }
 
