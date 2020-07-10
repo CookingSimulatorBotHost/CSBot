@@ -9,13 +9,13 @@
         "verified": ""
     },
     "links": {
-        "pFAQ": "../pictures/logos/csFAQ.png",
-        "pLogo": "../pictures/logos/csLogo.png",
-        "pLady": "../pictures/logos/csLady.png",
-        "pDev": "../pictures/logos/csDev.png",
-        "pBug": "../pictures/logos/csBug.png",
-        "pLoading": "../pictures/logos/csLoadingScreen.png",
-        "pCYRI": "../pictures/logos/cyri.png",
+        "pFAQ": "http://game-server-reloaded.eu/csFAQ.png",
+        "pLogo": "http://game-server-reloaded.eu/csLogo.png",
+        "pLady": "http://game-server-reloaded.eu/csLady.png",
+        "pDev": "http://game-server-reloaded.eu/csDev.png",
+        "pBug": "http://game-server-reloaded.eu/csBug.png",
+        "pLoading": "http://game-server-reloaded.eu/csLoadingScreen.png",
+        "pCYRI": "http://game-server-reloaded.eu/cyri.png",
         "cyriCS": "https://www.systemrequirementslab.com/cyri/requirements/cooking-simulator/18846"
     },
     "kenobi": [
