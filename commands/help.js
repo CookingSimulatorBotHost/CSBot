@@ -13,7 +13,7 @@ module.exports = {
             .setThumbnail(ids.links.pLady)
             .addFields(
                 { name: '!cyri', value: 'Provides a link to the awesome \'Can You Run It\' site, where you can check if your PC is capable of running this game!'},
-                { name: '!bug (test)[https://google.de]', value: 'Provides a message on how to report bugs properly.'},
+                { name: '!bug', value: 'Provides a message on how to report bugs properly.'},
                 { name: '!dev', value: 'Provides a message on how to troubleshoot.'},
                 { name: '!faq', value: 'Provides a reminder to check the FAQ. ;)'}
             )
