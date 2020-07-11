@@ -18,10 +18,10 @@ for (const file of commandFiles) {
 
 // Global Variables
 const prefix = Config.prefix
-let yikes
 let lastKenobi = [
     new Date() - 180000,
-    yikes
+    "",
+    ""
 ]
 
 // What should the bot do once its ready
@@ -60,17 +60,24 @@ client.on('message', (message) => {
 
     // If no command matches the recieved command, return
     if (!client.commands.has(command))  {
-        message.channel.send("Sorry, I couldn't understand you. Try to use '!help'.\nIf you weren't talking to me, please don't start your message with '!'. :)")
+        message.reply("sorry, I couldn't understand you. Try to use '!help'.\nIf you weren't talking to me, please don't start your message with '!'. :)").then(msg => {
+            if (message.channel.type != "dm") {
+                setTimeout(stuff => {
+                    msg.delete()
+                    message.delete()
+                }, 10000)
+            }
+        })
         return
     }
     
     // Try to execute the command
     try {
-        client.commands.get(command).execute(message, args)
+        client.commands.get(command).execute(message, args, client)
     } catch (e) {
         console.error(e)
-        message.guild.users.cache.get(Config.bot_owner).send(`There was an error while handling the request "${message.content}".`)
-        message.reply(`Sadly, there was an error while executing your request. :(`)
+        message.guild.members.cache.get(Config.bot_owner).user.send(`There was an error while handling the request "${message.content}" from "${message.user.username}".`)
+        message.reply(`sadly there was an error while executing your request. :(`)
     }
 })
 
@@ -101,16 +108,39 @@ function respond(message, word) {
                 .setTimestamp(new Date)
             return message.channel.send(mEmbed)
         case ReactMessages[3] :
-            if (((new Date()) - lastKenobi[0]) < 180000) {
-                return message.author.send(`Hey, uhm, you know there is a cooldown, right? \nWell, now you know. ^^ \n\`Still ${Math.round((180000 - ((new Date()) - lastKenobi[0])) / 1000)} seconds to go.\``)
+            // Cooldown only if the bot is not the development bot
+            if (((new Date()) - lastKenobi[0]) < 180000 && client.user.id != "730837674914611211") {
+                return message.reply(`Hey, uhm, you know there is a cooldown, right? \nWell, now you know. ^^ \n\`Still ${Math.round((180000 - ((new Date()) - lastKenobi[0])) / 1000)} seconds to go.\``).then(msg => {
+                    if (message.channel.type != "dm") {
+                        setTimeout(stuff => {
+                            msg.delete()
+                            message.delete()
+                        }, 10000)
+                    }
+                }).catch(err => console.error("stuff that I dont care about, just dont spam the console"))
             }
+            // If the last user that used this meme is the same as now, abort
             if (message.member === lastKenobi[1]) {
-                return message.author.send(`I know, Kenobi is awesome. But please don't overuse it.`)
+                return message.reply(`I know, Kenobi is awesome. But please don't overuse it.`).then(msg => {
+                    if (message.channel.type != "dm") {
+                        setTimeout(stuff => {
+                            msg.delete()
+                            message.delete()
+                        }, 10000)
+                    }
+                }).catch(err => console.error(`stuff that I dont care about, just dont spam the console`))
             }
-            message.channel.send({files: [ids.kenobi[randomInteger(0, ids.kenobi.length - 1)]]})
+            // Gets a random picture that was not send the last time
+            let randomPicN = ids.kenobi[randomInteger(0, ids.kenobi.length - 1)]
+            while (randomPicN === lastKenobi[2]) {
+                randomPicN = ids.kenobi[randomInteger(0, ids.kenobi.length - 1)]
+            }
+            // Sends the picture and saves necessary informations for the next time.
+            message.channel.send({files: [randomPicN]})
             lastKenobi = [
                 Date.now(),
-                message.member
+                message.member,
+                randomPicN
             ]
             return
         case ReactMessages[4] :
@@ -125,4 +155,4 @@ function randomInteger(min, max) {
 }
 
 // Login to the bot
-client.login(Config.token).then(r => console.log("Successfully logged in!"));
+client.login(Config.token).then(r => console.log("Successfully logged in!")).catch(err => console.error("Error while trying to log in"));

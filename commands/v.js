@@ -4,7 +4,7 @@ const Discord = require('discord.js')                                   // Impor
 module.exports = {
     name: 'v',
     description: 'Version',
-    execute(message, args) {
-        message.reply(`hey there. There current version of this bot is v${Package.version}!`)
+    execute(message, args, client) {
+        message.reply(`hey there. The current version of this bot is v${Package.version}!`)
     }
 }

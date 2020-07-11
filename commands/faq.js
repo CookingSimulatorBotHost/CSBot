@@ -4,7 +4,7 @@ const Discord = require('discord.js')                               // Imports d
 module.exports = {
     name: 'faq',
     description: 'FAQ reminder!',
-    execute(message, args) {
+    execute(message, args, client) {
         let mEmbed = new Discord.MessageEmbed()
             .setColor('#00ffff')
             .setTitle('FAQ - Frequently Asked Questions')

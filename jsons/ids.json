@@ -16,6 +16,7 @@
         "pBug": "http://game-server-reloaded.eu/csBug.png",
         "pLoading": "http://game-server-reloaded.eu/csLoadingScreen.png",
         "pCYRI": "http://game-server-reloaded.eu/cyri.png",
+        "pCat": "http://game-server-reloaded.eu/cat.png",
         "cyriCS": "https://www.systemrequirementslab.com/cyri/requirements/cooking-simulator/18846"
     },
     "kenobi": [
@@ -27,7 +28,11 @@
         "./pictures/kenobi/bratwurst.png",
         "./pictures/kenobi/coronabi.png",
         "./pictures/kenobi/marvelKenobi.png",
-        "./pictures/kenobi/pastenobi.png",
-        "./pictures/kenobi/wut.png"
+        "./pictures/kenobi/pastanobi.png",
+        "./pictures/kenobi/wut.png",
+        "./pictures/kenobi/thefuck.png",
+        "./pictures/kenobi/gold.png",
+        "./pictures/kenobi/anobi.png",
+        "./pictures/kenobi/half.png"
     ]
 }
