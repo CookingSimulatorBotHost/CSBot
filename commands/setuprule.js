@@ -9,7 +9,7 @@ module.exports = {
         if (!message.member.hasPermission('ADMINISTRATOR'))
             return
         
-        message.reply(`this command is currently not available, please reach out to the bot owner <@${Config.bot_owner}>.`)
+        message.user.send(`this command is currently not available, please reach out to the bot owner <@${Config.bot_owner}>.`).catch(err => console.error("DMs off"))
         /*let mEmbed = new Discord.MessageEmbed()
             .setColor('#ff0000')
             .setTitle('**Rules**')
