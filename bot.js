@@ -77,7 +77,14 @@ client.on('message', (message) => {
     } catch (e) {
         console.error(e)
         message.guild.members.cache.get(Config.bot_owner).user.send(`There was an error while handling the request "${message.content}" from "${message.user.username}".`)
-        message.reply(`sadly there was an error while executing your request. :(`)
+        message.reply(`sadly there was an error while executing your request. :(`).then(msg => {
+            if (message.channel.type != "dm") {
+                setTimeout(stuff => {
+                    msg.delete()
+                    message.delete()
+                }, 10000)
+            }
+        })
     }
 })
 
