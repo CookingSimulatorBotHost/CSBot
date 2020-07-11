@@ -27,8 +27,8 @@ module.exports = {
                 .setAuthor('Cooking Simulator', ids.links.pLogo)
                 .setThumbnail(ids.links.pCat)
                 .addFields(
-                    {name: "Weird date", value: `${joined.toString().replace('GMT+0200 (Central European Summer Time)', '(UTC+2)')}`},
-                    {name: "Better date", value: `${joined.toISOString().replace(/T/, ' ').replace(/\..+/, '')} (UTC+-0)`},
+                    {name: "Weird join date", value: `${joined.toString().replace('GMT+0200 (Central European Summer Time)', '(UTC+2)')}`},
+                    {name: "Better join date", value: `${joined.toISOString().replace(/T/, ' ').replace(/\..+/, '')} (UTC+-0)`},
                     {name: "Days passed", value: `${days}`}
                 )
                 .setTimestamp(new Date)
