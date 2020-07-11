@@ -4,7 +4,7 @@ const Discord = require('discord.js')                                   // Impor
 module.exports = {
     name: 'cyri',
     description: 'Can YOU run it?',
-    execute(message, args) {
+    execute(message, args, client) {
         let mEmbed = new Discord.MessageEmbed()
             .setColor('#00ffff')
             .setTitle('Can You run it? Let\'s see!')

@@ -4,7 +4,7 @@ const Discord = require('discord.js')                               // Imports d
 module.exports = {
     name: 'dev',
     description: 'Troubleshooting!',
-    execute(message, args) {
+    execute(message, args, client) {
         let mEmbed = new Discord.MessageEmbed()
             .setColor('#00ffff')
             .setTitle('Troubleshooting')

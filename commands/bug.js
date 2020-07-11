@@ -4,7 +4,7 @@ const Discord = require('discord.js')                           // Imports disco
 module.exports = {
     name: 'bug',
     description: 'Bug!',
-    execute(message, args) {
+    execute(message, args, client) {
         let mEmbed = new Discord.MessageEmbed()
             .setColor('#00ffff')
             .setTitle('How to report a bug')

@@ -5,7 +5,7 @@ const Discord = require('discord.js')                               // Imports d
 module.exports = {
     name: 'rule',
     description: 'Set rule message!',
-    execute(message, args) {
+    execute(message, args, client) {
         if (!message.member.hasPermission('ADMINISTRATOR'))
             return
         
