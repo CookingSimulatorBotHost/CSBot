@@ -16,7 +16,8 @@ module.exports = {
                 { name: '!bug', value: 'Provides a message on how to report bugs properly.'},
                 { name: '!dev', value: 'Provides a message on how to troubleshoot.'},
                 { name: '!faq', value: 'Provides a reminder to check the FAQ. ;)'},
-                { name: '!time', value: 'When did you join? I forgot.'}
+                { name: '!time', value: 'When did you join? I forgot.'},
+                { name: '!suggest', value: 'Suggest features for the bot.'}
             )
             .setTimestamp(new Date)
         message.channel.send(mEmbed)
