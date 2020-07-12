@@ -22,6 +22,7 @@ module.exports = {
         if (typeof message.attachments.url !== 'undefined' && message.attachments.url !== null) {
             suggestUser.send(embed)
             suggestUser.send({files: [message.attachments.first().url]}).then(msg => {
+                message.author.send("Your suggestion was send.")
                 if (message.channel.type != "dm") {
                     setTimeout(stuff => {
                         message.delete()
@@ -30,6 +31,7 @@ module.exports = {
             }).catch(console.error)
         } else {
             suggestUser.send(embed).then(msg => {
+                message.author.send("Your suggestion was send.")
                 if (message.channel.type != "dm") {
                     setTimeout(stuff => {
                         message.delete()
@@ -37,6 +39,5 @@ module.exports = {
                 }
             }).catch(console.error)
         }
-        message.user.send("Your suggestion was send.")
     }
 }
