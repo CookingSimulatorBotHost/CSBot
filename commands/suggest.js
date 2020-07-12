@@ -37,5 +37,6 @@ module.exports = {
                 }
             }).catch(console.error)
         }
+        message.user.send("Your suggestion was send.")
     }
 }
