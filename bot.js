@@ -114,42 +114,6 @@ function respond(message, word) {
                 )
                 .setTimestamp(new Date)
             return message.channel.send(mEmbed)
-        case ReactMessages[3] :
-            // Cooldown only if the bot is not the development bot
-            if (((new Date()) - lastKenobi[0]) < 180000 && client.user.id != "730837674914611211") {
-                return message.reply(`Hey, uhm, you know there is a cooldown, right? \nWell, now you know. ^^ \n\`Still ${Math.round((180000 - ((new Date()) - lastKenobi[0])) / 1000)} seconds to go.\``).then(msg => {
-                    if (message.channel.type != "dm") {
-                        setTimeout(stuff => {
-                            msg.delete()
-                            message.delete()
-                        }, 10000)
-                    }
-                }).catch(err => console.error("stuff that I dont care about, just dont spam the console"))
-            }
-            // If the last user that used this meme is the same as now, abort
-            if (message.member === lastKenobi[1]) {
-                return message.reply(`I know, Kenobi is awesome. But please don't overuse it.`).then(msg => {
-                    if (message.channel.type != "dm") {
-                        setTimeout(stuff => {
-                            msg.delete()
-                            message.delete()
-                        }, 10000)
-                    }
-                }).catch(err => console.error(`stuff that I dont care about, just dont spam the console`))
-            }
-            // Gets a random picture that was not send the last time
-            let randomPicN = ids.kenobi[randomInteger(0, ids.kenobi.length - 1)]
-            while (randomPicN === lastKenobi[2]) {
-                randomPicN = ids.kenobi[randomInteger(0, ids.kenobi.length - 1)]
-            }
-            // Sends the picture and saves necessary informations for the next time.
-            message.channel.send({files: [randomPicN]})
-            lastKenobi = [
-                Date.now(),
-                message.member,
-                randomPicN
-            ]
-            return
         case ReactMessages[4] :
             let emoji = client.emojis.cache.find(emoji => emoji.name === "PepeYikes")
             return message.reply(`this is a secret ${emoji}`)
