@@ -95,34 +95,25 @@ function respond(message, word) {
             mEmbed = new Discord.MessageEmbed()
                 .setColor('#00ffff')
                 .setTitle('Loading Screen')
-                .setAuthor('Cooking Simulator', ids.links.pLogo)
                 .setDescription(`If you are stuck in the loading screen, check <#${ids.channels.troubleshooting}>!`)
                 .setThumbnail(ids.links.pLoading)
-                .setTimestamp(new Date)
             return message.channel.send(mEmbed)
         case ReactMessages[1] :
         case ReactMessages[2] :
             mEmbed = new Discord.MessageEmbed()
                 .setColor('#00ffff')
                 .setTitle('Bot Usage')
-                .setAuthor('Cooking Simulator', ids.links.pLogo)
                 .setThumbnail(ids.links.pLady)
                 .addFields(
                     { name: "Prefix", value: `The prefix of this bot is '**${Config.prefix}**'`},
                     { name: "Usage", value: `To use the bot, type '**${Config.prefix}<Command>**'`},
                     { name: "Example", value: `${Config.prefix}help`}
                 )
-                .setTimestamp(new Date)
             return message.channel.send(mEmbed)
         case ReactMessages[4] :
             let emoji = client.emojis.cache.find(emoji => emoji.name === "PepeYikes")
             return message.reply(`this is a secret ${emoji}`)
     }
-}
-
-// Gives back a random number
-function randomInteger(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 // Login to the bot
