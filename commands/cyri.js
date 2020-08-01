@@ -8,10 +8,8 @@ module.exports = {
         let mEmbed = new Discord.MessageEmbed()
             .setColor('#00ffff')
             .setTitle('Can You run it? Let\'s see!')
-            .setAuthor('Cooking Simulator', ids.links.pLogo)
             .setDescription(`Check [this](${ids.links.cyriCS}) awesome site\nto see if you can run this game!`)
             .setThumbnail(ids.links.pCYRI)
-            .setTimestamp(new Date)
         message.channel.send(mEmbed)
     }
 }

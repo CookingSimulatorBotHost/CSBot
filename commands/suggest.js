@@ -16,7 +16,6 @@ module.exports = {
             .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
             .setDescription(suggestion)
             .setThumbnail(ids.links.pFAQ)
-            .setTimestamp(new Date)
         if (typeof message.attachments.url !== 'undefined' && message.attachments.url !== null) {
             member.user.send(embed)
             member.user.send({files: [message.attachments.first().url]}).then(msg => {
